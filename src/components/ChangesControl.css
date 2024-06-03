@@ -1,0 +1,23 @@
+form {
+    display: block;
+    flex-direction: column;
+    overflow-y: auto;
+    align-self: center;
+    justify-content: left;
+    margin-bottom: 10px;
+    width: 700px
+}
+
+form input, button {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.small-button {
+    max-width: 100px;
+}
