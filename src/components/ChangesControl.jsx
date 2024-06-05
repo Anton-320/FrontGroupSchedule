@@ -47,7 +47,6 @@ export default function ChangesControl() {
   }, [groupNumber, date]);
 
   useEffect(() => {
-    console.log("Location state:", location.state); // Для отладки
     fetchChanges();
   }, [fetchChanges]);
 
@@ -112,7 +111,7 @@ export default function ChangesControl() {
           <th>Подгруппа</th>
           <th>Заметки</th>
           <th>Преподаватели</th>
-          <th>Действия</th>
+          <th>Операции</th>
         </tr>
         </thead>
         <tbody>
