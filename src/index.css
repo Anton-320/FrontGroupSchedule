@@ -3,6 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
+  justify-content: center;
+  justify-self: center;
   color: rgba(0, 0, 0, 0.87);
   background-color: wheat;
 
@@ -25,6 +27,7 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
+  justify-self: center;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;

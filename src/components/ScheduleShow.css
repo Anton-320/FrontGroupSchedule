@@ -72,12 +72,3 @@ button:disabled {
 .table tbody tr:hover {
     background-color: #c1c1c1;
 }
-
-.table a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.table a:hover {
-    text-decoration: underline;
-}

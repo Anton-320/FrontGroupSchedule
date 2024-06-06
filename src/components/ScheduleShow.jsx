@@ -14,9 +14,7 @@ export default function ShowLessons() {
   const [search, setSearch] = useState(false);
   const [changesButtonActive, setChangesButtonActive] = useState(false);
 
-  const location = useLocation();
   const navigate = useNavigate();
-  const { groupNumberState, dateState } = location.state || {};
 
   useEffect(() => {
     if (search) {
@@ -80,15 +78,15 @@ export default function ShowLessons() {
               <td>{lesson.startTime}</td>
               <td>{lesson.endTime}</td>
               <td>{lesson.lessonTypeAbbr}</td>
-              <td>{lesson.auditoriums.map((auditorium, idx) => (
-                <span key={idx}>{auditorium}</span>
+              <td>{lesson.auditoriums.map((aud, idx) => (
+                <span key={idx}>{aud}<br/></span>
               ))}</td>
               <td>{lesson.subgroupNum === 0 ? 'Обе подгруппы' : `${lesson.subgroupNum}-я подгруппа`}</td>
               <td>{lesson.note}</td>
               <td>
                 {lesson.teachers.map((teacher, idx) => (
                   <a key={idx} href="#" onClick={() => openModal(teacher)}>
-                    {teacher.surname} {teacher.name} {teacher.patronymic}
+                    {teacher.surname} {teacher.name} {teacher.patronymic} <br/>
                   </a>
                 ))}
               </td>

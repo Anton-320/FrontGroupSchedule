@@ -34,6 +34,9 @@ export default function ChangesControl() {
   const [teacherEmail, setTeacherEmail] = useState();
   const [teachers, setTeachers] = useState([]);
 
+  const [selectedTeacher, setSelectedTeacher] = useState();
+  const [modalTeacherInfoIsOpen, setModalTeacherInfoIsOpen] = useState();
+
   const fetchChanges = useCallback(() => {
     if (groupNumber && date) {
       getChangesByGroupAndDate(groupNumber, date)
@@ -123,13 +126,18 @@ export default function ChangesControl() {
             <td>{change.endTime}</td>
             <td>{change.lessonTypeAbbr}</td>
             <td>{change.auditoriums.map((auditorium, idx) => (
-              <span key={idx}>{auditorium}</span>
+              <span key={idx}>{auditorium}<br/></span>
             ))}</td>
             <td>{change.subgroupNum === 0 ? 'Обе подгруппы' : `${change.subgroupNum}-я подгруппа`}</td>
             <td>{change.note}</td>
             <td>
               {change.teachers.map((teacher, idx) => (
-                <span key={idx}>{teacher.surname} {teacher.name} {teacher.patronymic}</span>
+                <a key={idx} href="#" onClick={() => {
+                  setSelectedTeacher(teacher)
+                  setModalTeacherInfoIsOpen(true);
+                }}>
+                  {teacher.surname} {teacher.name} {teacher.patronymic} <br/>
+                </a>
               ))}
             </td>
             <td>
@@ -235,6 +243,30 @@ export default function ChangesControl() {
           <button type="submit">Добавить</button>
         </form>
       </Modal>
+
+      {selectedTeacher && (
+        <Modal
+          isOpen={modalTeacherInfoIsOpen}
+          onRequestClose={() => {
+            setModalTeacherInfoIsOpen(false);
+            setSelectedTeacher(null);
+          }}
+          className="modal-content"
+          overlayClassName="modal-overlay"
+        >
+          <div className='teacher-info'>
+            <p>Фамилия: {selectedTeacher.surname}</p>
+            <p>Имя: {selectedTeacher.name}</p>
+            <p>Отчество: {selectedTeacher.patronymic}</p>
+            {selectedTeacher.degree && <p>Степень: {selectedTeacher.degree}</p>}
+            {selectedTeacher.email && <p>Email: {selectedTeacher.email}</p>}
+          </div>
+          <button className="close-button" onClick={() => {
+            setModalTeacherInfoIsOpen(false);
+            setSelectedTeacher(null);
+          }}>Закрыть</button>
+        </Modal>
+      )}
     </>
   );
 }

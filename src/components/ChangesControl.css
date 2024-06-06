@@ -3,7 +3,7 @@ form {
     flex-direction: column;
     overflow-y: auto;
     align-self: center;
-    justify-content: left;
+    justify-content: center;
     margin-bottom: 10px;
     width: 700px
 }
